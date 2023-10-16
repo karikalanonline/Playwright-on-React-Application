@@ -4,7 +4,7 @@ import { DashboardPage } from './dashboard.page';
 export class AccountsPage {
 
 
-	private get famButton(): Locator {
+	private get dashboardButton(): Locator {
 		return this.page.locator('[value ="FAM_Custom2"]')
 	}
 
@@ -16,7 +16,7 @@ export class AccountsPage {
 
 	public async goToAccount(accountId: string): Promise<DashboardPage> {
 		await this.getAccountLink(accountId).click();
-		const popup = await this.switchToFamTab();
+		const popup = await this.switchToDashboardTab();
 		return DashboardPage.on(popup)
 
 
@@ -27,10 +27,10 @@ export class AccountsPage {
 		return this.page.title();
 	}
 
-	private async switchToFamTab(): Promise<Page> {
+	private async switchToDashboardTab(): Promise<Page> {
 		const [popup] = await Promise.all([
 			this.page.waitForEvent('popup'),
-			this.famButton.first().click()
+			this.dashboardButton.first().click()
 		]);
 		return popup;
 	}

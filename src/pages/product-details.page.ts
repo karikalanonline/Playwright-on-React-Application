@@ -2,7 +2,6 @@ import { Locator, Page } from 'playwright';
 import { DashboardPage as DashBoardPage } from './dashboard.page';
 import { Products } from './products';
 import { StandAloneAddons } from './standaloneaddons.page';
-// const data = require('../testdata/account/fadetails.json')
 
 export class ProductDetailsPage {
 	private constructor(private page: Page) {}
@@ -16,8 +15,8 @@ export class ProductDetailsPage {
 	}
 
 	static async on(page: Page) {
-		const faDetailsPage = new ProductDetailsPage(page);
-		return faDetailsPage;
+		const productDetailsPage = new ProductDetailsPage(page);
+		return productDetailsPage;
 	}
 
 	public async productDetailsPage() {
@@ -29,7 +28,7 @@ export class ProductDetailsPage {
 	}
 
 	private get productNameInput(): Locator {
-		return this.page.locator("//div[.='Agreement name']//input");
+		return this.page.locator("//div[.='Product name']//input");
 	}
 
 	public get successMessageToaster(): Locator {
@@ -37,7 +36,7 @@ export class ProductDetailsPage {
 	}
 	private getTabElement(tabName: string): Locator {
 		return this.page.locator(
-			`//li[contains(@class,'fa-tab ')]//a[normalize-space()='${tabName}']`
+			`//li[contains(@class,'product-tab ')]//a[normalize-space()='${tabName}']`
 		);
 	}
 

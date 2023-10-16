@@ -1,2 +1,1 @@
-export const FAC = 'Frame Agreement Negotiation Console'
-export const NEWAGREEMENTBUTTON = 'Add new agreement'
+export const DASHBOARD = 'Product Management Console';

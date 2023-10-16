@@ -1,46 +1,46 @@
 import { test, expect, Page } from '@playwright/test';
-import { FacPage, Org, FaDetailsPage, AccountsPage, Products, standAloneAddons } from '../src';
-const data = require('../testdata/account/fadetails.json');
+import { DashboardPage, Org, ProductDetailsPage, AccountsPage, Products, StandAloneAddons } from '../src';
+const data = require('../testdata/account/productdetails.json');
 
 let page: Page;
 
 test.describe.serial('test', async () => {
-	let facPage: FacPage;
+	let dashboardPage: DashboardPage;
 	let productsTab: Products;
-	let standAloneAddons: standAloneAddons;
-	let faDetailsPage: FaDetailsPage;
+	let standAloneAddons: StandAloneAddons;
+	let productDetailsPage: ProductDetailsPage;
 
 	test.beforeAll(async ({ browser }) => {
 		const homePage = await Org.getInstance(browser).login();
 		const accountsPage = await homePage.gotoAccounts();
-		facPage = await accountsPage.goToAccount(data.accountId);
+		dashboardPage = await accountsPage.goToAccount(data.accountId);
 	});
 
-	test('Create New FA and Check if it is created', async ({}) => {
-		const faDetailsPage = await facPage.createFrameAgreement(data.newFaName);
-		await faDetailsPage.back();
-		expect(await facPage.isFrameAgreementExists(data.newFaName)).toBeTruthy();
+	test('Create New Product and Check if it is created', async ({}) => {
+		const productDetailsPage = await dashboardPage.createProduct(data.newProductName);
+		await productDetailsPage.back();
+		expect(await dashboardPage.isProductExists(data.newProductName)).toBeTruthy();
 	});
 
-	test('Check the new FA status', async ({}) => {
-		expect(await facPage.getStatus(data.newFaName)).toEqual('Draft');
+	test('Check the new product approval status', async ({}) => {
+		expect(await dashboardPage.getStatus(data.newProductName)).toEqual('Draft');
 	});
 
-	test('Clone the FA', async ({}) => {
-		const countBeforeClone = await facPage.countOf(data.newFaName);
-		await facPage.cloneFA(data.newFaName);
-		const countAfterClone = await facPage.countOf(data.newFaName);
+	test('Clone the product', async ({}) => {
+		const countBeforeClone = await dashboardPage.countOf(data.newProductName);
+		await dashboardPage.cloneProduct(data.newProductName);
+		const countAfterClone = await dashboardPage.countOf(data.newProductName);
 		expect(countAfterClone).toEqual(countBeforeClone + 1);
 	});
-	test('Delete the FA', async ({}) => {
-		const countBeforeDelete = await facPage.countOf(data.newFaName);
-		await facPage.deleteFA(data.newFaName);
-		const countAfterDelete = await facPage.countOf(data.newFaName);
+	test('Delete the product', async ({}) => {
+		const countBeforeDelete = await dashboardPage.countOf(data.newProductName);
+		await dashboardPage.deleteProduct(data.newProductName);
+		const countAfterDelete = await dashboardPage.countOf(data.newProductName);
 		expect(countAfterDelete).toEqual(countBeforeDelete - 1);
 	});
 	test('add the new product', async ({}) => {
-		const faDetailsPage = await facPage.goToFaDetailsPage(data.newFaName);
-		productsTab = await faDetailsPage.goToProducts();
+		const productDetailsPage = await dashboardPage.goToProductDetailsPage(data.newProductName);
+		productsTab = await productDetailsPage.goToProducts();
 		await productsTab.addProducts(data.product1);
 	});
 	test('delete the product', async ({}) => {
@@ -51,6 +51,6 @@ test.describe.serial('test', async () => {
 	});
 
 	test('Add the standalone Addons', async ({}) => {
-		const standAloneAddons = await faDetailsPage.goToStandAloneAddon();
+		const standAloneAddons = await productDetailsPage.goToStandAloneAddon();
 	});
 });

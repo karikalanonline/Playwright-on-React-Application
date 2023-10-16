@@ -1,5 +1,4 @@
 import { Locator, Page } from 'playwright';
-import { ProductDetailsPage } from './fa-details.page';
 
 export class StandAloneAddons {
 	constructor(private page: Page) {}
@@ -10,25 +9,25 @@ export class StandAloneAddons {
 
 	public get addAddonsButton(): Locator {
 		return this.page.locator(
-			"//div[@class ='fa-main-footer']//span[normalize-space()='Add Add Ons']"
+			"//div[@class ='addon-main-footer']//span[normalize-space()='Add Add Ons']"
 		);
 	}
 
 	public get negotiateAddonsButton(): Locator {
 		return this.page.locator(
-			"//div[@class ='fa-main-footer']//span[normalize-space()='Negotiate Add ons']"
+			"//div[@class ='addon-main-footer']//span[normalize-space()='Negotiate Add ons']"
 		);
 	}
 
 	public get deleteAddonsButton(): Locator {
 		return this.page.locator(
-			"//div[@class ='fa-main-footer']//span[normalize-space()='Delete Add Ons']"
+			"//div[@class ='addon-main-footer']//span[normalize-space()='Delete Add Ons']"
 		);
 	}
 
 	public async getButton(button: string): Promise<Locator> {
 		return this.page.locator(
-			`//div[@class ='fa-main-footer']//span[normalize-space()='${button}']`
+			`//div[@class ='addon-main-footer']//span[normalize-space()='${button}']`
 		);
 	}
 }

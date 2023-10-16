@@ -1,10 +1,10 @@
 {
   "accountId": "0014I00001qHSEv",
-  "newFaName": "Test99",
+  "newProductName": "Test99",
   "accountName": "Account1",
   "product1": "XXLx12",
   "product2": "LX12",
   "Addon1": "Call Waiting",
   "Addon2": "Call Divert",
-  "MasterFaName": "Master 1"
+  "MasterProductName": "Master 1"
 }

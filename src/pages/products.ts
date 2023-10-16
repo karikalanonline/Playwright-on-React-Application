@@ -1,5 +1,5 @@
 import { Locator, Page } from 'playwright';
-import { ProductDetailsPage } from './fa-details.page';
+import { ProductDetailsPage } from './product-details.page';
 
 export class Products {
 	public constructor(private page: Page) {}
@@ -11,7 +11,7 @@ export class Products {
 	}
 
 	private get addProductsWindow(): Locator {
-		return this.page.locator("//div[@class='styles_modal__gNwvD modal fa-modal']");
+		return this.page.locator("//div[@class='styles_modal__gNwvD modal product-modal']");
 	}
 
 	private get filterSearchBox(): Locator {
@@ -24,7 +24,7 @@ export class Products {
 
 	private get addSelectedButton(): Locator {
 		return this.page.locator(
-			"//div[@class='fa-modal-footer']//button[normalize-space()='Add Selected']"
+			"//div[@class='product-modal-footer']//button[normalize-space()='Add Selected']"
 		);
 	}
 
@@ -87,7 +87,7 @@ export class Products {
 	}
 	private get deleteProductsButton(): Locator {
 		return this.page.locator(
-			"//div[@class='fa-modal-footer']//button[contains(text(),'Delete Products')]"
+			"//div[@class='product-modal-footer']//button[contains(text(),'Delete Products')]"
 		);
 	}
 
